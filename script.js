@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     if (conversationHistory.length === 0) {
-        displayGeminiMessage("¡Hola! Soy Gemini, tu asistente personal. ¿En qué puedo ayudarte hoy?");
-        conversationHistory.push({ role: "model", parts: [{ text: "¡Hola! Soy Gemini, tu asistente personal. ¿En qué puedo ayudarte hoy?" }] });
+        displayGeminiMessage("¡Hola! Soy tu ayudante de cocina. ¿En qué puedo ayudarte hoy?");
+        conversationHistory.push({ role: "model", parts: [{ text: "¡Hola! Soy tu ayudante de cocina. ¿En qué puedo ayudarte hoy?" }] });
         saveConversationHistory();
     }
 

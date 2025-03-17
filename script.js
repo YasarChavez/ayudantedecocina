@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatMessages = document.getElementById('chat-messages');
     const body = document.body;
     const clearChatButton = document.getElementById('clear-chat-button');
-    const typingIndicator = document.getElementById('typing-indicator');
     const fullscreenButton = document.getElementById('fullscreen-button');
     const fullscreenIcon = document.getElementById('fullscreen-icon');
     const chatContainer = document.querySelector('.chat-container');
@@ -87,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lightModeButton.addEventListener('click', () => {
         body.classList.remove('dark-mode');
         localStorage.removeItem('dark-mode');
-        // Show dark mode button, hide light mode button
         darkModeButton.style.display = 'flex';
         lightModeButton.style.display = 'none';
     });
@@ -95,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
     darkModeButton.addEventListener('click', () => {
         body.classList.add('dark-mode');
         localStorage.setItem('dark-mode', 'enabled');
-        // Show light mode button, hide dark mode button
         lightModeButton.style.display = 'flex';
         darkModeButton.style.display = 'none';
     });
@@ -103,19 +100,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (localStorage.getItem('dark-mode') === 'enabled') {
         body.classList.add('dark-mode');
-        // Initially show light mode button, hide dark mode button if dark mode is enabled
         lightModeButton.style.display = 'flex';
         darkModeButton.style.display = 'none';
     } else {
-        // Initially show dark mode button, hide light mode button if light mode is enabled (default)
         darkModeButton.style.display = 'flex';
         lightModeButton.style.display = 'none';
     }
 
 
     if (conversationHistory.length === 0) {
-        displayGeminiMessage("¡Hola! Soy tu ayudante de cocina. ¿En qué puedo ayudarte hoy?");
-        conversationHistory.push({ role: "model", parts: [{ text: "¡Hola! Soy tu ayudante de cocina. ¿En qué puedo ayudarte hoy?" }] });
+        displayGeminiMessage("¡Hola! Soy tu Ayudante de Cocina. ¿En qué puedo ayudarte hoy?");
+        conversationHistory.push({ role: "model", parts: [{ text: "¡Hola! Soy tu Ayudante de Cocina. ¿En qué puedo ayudarte hoy?" }] });
         saveConversationHistory();
     }
 
@@ -135,8 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         conversationHistory.push({ role: "user", parts: [{ text: messageText }] });
         saveConversationHistory();
 
-        typingIndicator.style.display = 'block';
-        scrollToBottom();
 
         callGeminiAPI(conversationHistory, geminiInstruction);
     }
@@ -207,21 +200,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const geminiResponse = data.candidates[0].content.parts[0].text;
 
                 setTimeout(() => {
-                    typingIndicator.style.display = 'none';
                     displayGeminiMessage(geminiResponse);
                     conversationHistory.push({ role: "model", parts: [{ text: geminiResponse }] });
                     saveConversationHistory();
                 }, 500);
 
             } else {
-                typingIndicator.style.display = 'none';
                 displayGeminiMessage("No se pudo obtener una respuesta clara de Gemini.");
                 console.error("Respuesta de Gemini incompleta:", data);
             }
         })
         .catch(error => {
             console.error("Error al llamar a la API de Gemini:", error);
-            typingIndicator.style.display = 'none';
+            
             displayGeminiMessage("Error al comunicarse con Gemini. Inténtalo de nuevo más tarde.");
             localStorage.removeItem('geminiApiKey');
             apiKey = null;

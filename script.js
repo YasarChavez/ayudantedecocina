@@ -2,10 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('message-input');
     const sendButton = document.getElementById('send-button');
     const chatMessages = document.getElementById('chat-messages');
-    const darkModeSwitch = document.getElementById('dark-mode-switch');
     const body = document.body;
     const clearChatButton = document.getElementById('clear-chat-button');
     const typingIndicator = document.getElementById('typing-indicator');
+    const fullscreenButton = document.getElementById('fullscreen-button');
+    const fullscreenIcon = document.getElementById('fullscreen-icon');
+    const chatContainer = document.querySelector('.chat-container');
+    const lightModeButton = document.getElementById('light-mode-button');
+    const darkModeButton = document.getElementById('dark-mode-button');
 
     let apiKey = localStorage.getItem('geminiApiKey');
     let geminiApiUrl;
@@ -55,26 +59,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    darkModeSwitch.addEventListener('change', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('dark-mode', 'enabled');
+    clearChatButton.addEventListener('click', clearChat);
+    fullscreenButton.addEventListener('click', () => {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+            fullscreenIcon.classList.remove('fa-compress');
+            fullscreenIcon.classList.add('fa-expand');
         } else {
-            localStorage.removeItem('dark-mode');
+            chatContainer.requestFullscreen().catch((err) => {
+                alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+            });
+            fullscreenIcon.classList.remove('fa-expand');
+            fullscreenIcon.classList.add('fa-compress');
+        }
+    });
+    document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement) {
+            fullscreenIcon.classList.remove('fa-expand');
+            fullscreenIcon.classList.add('fa-compress');
+        } else {
+            fullscreenIcon.classList.remove('fa-compress');
+            fullscreenIcon.classList.add('fa-expand');
         }
     });
 
+
+    lightModeButton.addEventListener('click', () => {
+        body.classList.remove('dark-mode');
+        localStorage.removeItem('dark-mode');
+        // Show dark mode button, hide light mode button
+        darkModeButton.style.display = 'flex';
+        lightModeButton.style.display = 'none';
+    });
+
+    darkModeButton.addEventListener('click', () => {
+        body.classList.add('dark-mode');
+        localStorage.setItem('dark-mode', 'enabled');
+        // Show light mode button, hide dark mode button
+        lightModeButton.style.display = 'flex';
+        darkModeButton.style.display = 'none';
+    });
+
+
     if (localStorage.getItem('dark-mode') === 'enabled') {
         body.classList.add('dark-mode');
-        darkModeSwitch.checked = true;
+        // Initially show light mode button, hide dark mode button if dark mode is enabled
+        lightModeButton.style.display = 'flex';
+        darkModeButton.style.display = 'none';
+    } else {
+        // Initially show dark mode button, hide light mode button if light mode is enabled (default)
+        darkModeButton.style.display = 'flex';
+        lightModeButton.style.display = 'none';
     }
+
 
     if (conversationHistory.length === 0) {
         displayGeminiMessage("¡Hola! Soy Gemini, tu asistente personal. ¿En qué puedo ayudarte hoy?");
         conversationHistory.push({ role: "model", parts: [{ text: "¡Hola! Soy Gemini, tu asistente personal. ¿En qué puedo ayudarte hoy?" }] });
         saveConversationHistory();
     }
-
 
     function sendMessage() {
         const messageText = messageInput.value.trim();
@@ -110,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayGeminiMessage(message, doScroll = true) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', 'gemini-message');
-    
+
         const maxLength = 500;
         if (message.length > maxLength) {
             const shortMessage = message.substring(0, maxLength) + '... ';
@@ -119,18 +162,15 @@ document.addEventListener('DOMContentLoaded', () => {
             seeMoreSpan.classList.add('see-more-link');
             seeMoreSpan.style.cursor = 'pointer';
             seeMoreSpan.onclick = () => {
-                // Mensaje completo con saltos de línea HTML forzados para prueba
                 messageElement.innerHTML = message.replace(/\n/g, '<br>');
                 scrollToBottom();
             };
-            // Mensaje corto inicial con saltos de línea HTML forzados para prueba
-            messageElement.innerHTML = shortMessage.replace(/\n/g, '<br>');
+            messageElement.innerHTML = shortMessage;
             messageElement.appendChild(seeMoreSpan);
         } else {
-            // Mensaje completo con saltos de línea HTML forzados para prueba
             messageElement.innerHTML = message.replace(/\n/g, '<br>');
         }
-    
+
         chatMessages.appendChild(messageElement);
         if (doScroll) scrollToBottom();
     }

@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayudante de Cocina</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayudante de Cocina</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body>
-    <div class="chat-container">
-        <header class="chat-header">
-            <div class="user-info">
-                <img src="images/chef.png" alt="Foto de perfil de Gemini" class="profile-image">
-                <span class="user-name">Ayudante de Cocina</span>
-            </div>
-            <div class="header-actions">
-                <button id="clear-chat-button" aria-label="Limpiar chat" title="Limpiar chat">
-                    <i class="fa fa-recycle" aria-hidden="true"></i>
-                </button>
-                <label class="dark-mode-toggle">
-                    <input type="checkbox" id="dark-mode-switch">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-        </header>
-        <div id="chat-messages" class="chat-messages">
-            <!-- Los mensajes del chat se añadirán aquí -->
-            <div id="typing-indicator" class="typing-indicator" style="display: none;">Escribiendo...</div>
-        </div>
-        <div class="chat-input-area">
-            <textarea id="message-input" placeholder="Escribe un mensaje"></textarea>
-            <button id="send-button" aria-label="Enviar mensaje">
-                <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M3.4 20.4l17.45-7.5c.78-.34.78-1.46 0-1.8L3.4 3.6c-.77-.33-1.65.1-1.65.9v5.38L17.5 12 1.75 14.12v5.38c0 .8.88 1.23 1.65.9z"/></svg>
-            </button>
-        </div>
+  <div class="chat-container">
+    <header class="chat-header">
+      <div class="user-info">
+        <img src="images/chef.png" alt="Foto de perfil de Gemini" class="profile-image">
+        <span class="user-name">Ayudante de Cocina</span>
+      </div>
+      <div class="header-actions">
+        <button id="clear-chat-button" aria-label="Limpiar chat" title="Limpiar chat">
+          <i class="fa fa-recycle" aria-hidden="true"></i>
+        </button>
+        <button id="light-mode-button" aria-label="Modo claro" title="Modo claro">
+          <i class="fa fa-sun" aria-hidden="true"></i>
+        </button>
+        <button id="dark-mode-button" aria-label="Modo oscuro" title="Modo oscuro">
+          <i class="fa fa-moon" aria-hidden="true"></i>
+        </button>
+        <button id="fullscreen-button" aria-label="Pantalla completa" title="Pantalla completa">
+          <i id="fullscreen-icon" class="fa fa-expand" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+    <div id="chat-messages" class="chat-messages">
+      <!-- Los mensajes del chat se añadirán aquí -->
+      <div id="typing-indicator" class="typing-indicator" style="display: none;">Escribiendo...</div>
     </div>
-    <script src="script.js"></script>
+    <div class="chat-input-area">
+      <textarea id="message-input" placeholder="Escribe un mensaje"></textarea>
+      <button id="send-button" aria-label="Enviar mensaje">
+        <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">
+          <path fill="none" d="M0 0h24v24H0V0z" />
+          <path
+            d="M3.4 20.4l17.45-7.5c.78-.34.78-1.46 0-1.8L3.4 3.6c-.77-.33-1.65.1-1.65.9v5.38L17.5 12 1.75 14.12v5.38c0 .8.88 1.23 1.65.9z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
+
 </html>

@@ -237,8 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
         conversationHistory = [];
         localStorage.removeItem('geminiChatHistory');
         chatMessages.innerHTML = '';
-        displayGeminiMessage("Chat limpiado.");
-        conversationHistory.push({ role: "model", parts: [{ text: "Chat limpiado." }] });
+        displayGeminiMessage("¡Hola! Soy tu Ayudante de Cocina. ¿En qué puedo ayudarte hoy?");
+        conversationHistory.push({ role: "model", parts: [{ text: "¡Hola! Soy tu Ayudante de Cocina. ¿En qué puedo ayudarte hoy?" }] });
         saveConversationHistory();
     }
 

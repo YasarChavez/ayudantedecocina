@@ -176,6 +176,7 @@ textarea#message-input {
     font-size: 1em;
     background-color: #fff;
     color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body.dark-mode textarea#message-input {

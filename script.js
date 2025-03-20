@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatContainer = document.querySelector('.chat-container');
     const lightModeButton = document.getElementById('light-mode-button');
     const darkModeButton = document.getElementById('dark-mode-button');
+    const apiKeyButton = document.getElementById('api-key-button');
 
     let apiKey = localStorage.getItem('geminiApiKey');
     let geminiApiUrl;
@@ -47,6 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!initializeApi()) {
         return;
     }
+
+
+    function updateApiKey() {
+        apiKey = prompt('Introduce la nueva API Key de Gemini:');
+        if (apiKey) {
+            localStorage.setItem('geminiApiKey', apiKey);
+            geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + apiKey;
+        }
+    }
+    apiKeyButton.addEventListener('click', updateApiKey);
 
 
     const geminiInstruction = "Actúa como un asistente de cocina experto, proporcionando recetas, consejos de preparación, sugerencias de ingredientes alternativos, y ayudando con técnicas culinarias, manteniéndote siempre en el rol de ayudante de cocina sin desviarte de ese contexto.";
@@ -143,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveConversationHistory();
 
 
-        callGeminiAPI(conversationHistory, geminiInstruction);
+        getGeminiResponse(conversationHistory, geminiInstruction);
     }
 
 
@@ -181,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    function callGeminiAPI(history, instruction) {
+    function getGeminiResponse(history, instruction) {
         const apiContents = [
             {
                 role: "user",

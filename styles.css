@@ -72,7 +72,7 @@ body.dark-mode .chat-header {
 }
 
 /* Estilos para botones del header */
-#clear-chat-button, #fullscreen-button, #light-mode-button, #dark-mode-button {
+#clear-chat-button, #fullscreen-button, #light-mode-button, #dark-mode-button, #api-key-button {
     background-color: transparent;
     color: white;
     border: none;
@@ -87,15 +87,15 @@ body.dark-mode .chat-header {
     padding: 0;
 }
 
-#clear-chat-button:hover, #fullscreen-button:hover, #light-mode-button:hover, #dark-mode-button:hover {
+#clear-chat-button:hover, #fullscreen-button:hover, #light-mode-button:hover, #dark-mode-button:hover, #api-key-button:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-body.dark-mode #clear-chat-button, body.dark-mode #fullscreen-button, body.dark-mode #light-mode-button, body.dark-mode #dark-mode-button {
+body.dark-mode #clear-chat-button, body.dark-mode #fullscreen-button, body.dark-mode #light-mode-button, body.dark-mode #dark-mode-button, body.dark-mode #api-key-button {
     color: #e0e0e0;
 }
 
-body.dark-mode #clear-chat-button:hover, body.dark-mode #fullscreen-button:hover, body.dark-mode #light-mode-button:hover, body.dark-mode #dark-mode-button:hover {
+body.dark-mode #clear-chat-button:hover, body.dark-mode #fullscreen-button:hover, body.dark-mode #light-mode-button:hover, body.dark-mode #dark-mode-button:hover, body.dark-mode #api-key-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 

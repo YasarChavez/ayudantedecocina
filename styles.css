@@ -111,6 +111,11 @@ body.dark-mode #clear-chat-button:hover, body.dark-mode #fullscreen-button:hover
     background-size: cover;
     background-repeat: repeat;
     position: relative;
+    /* Hide scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    /* Hide scrollbar on WebKit browsers (Chrome, Safari) */
+    &::-webkit-scrollbar {display: none;}
     padding-bottom: 20px; 
 }
 

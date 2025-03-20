@@ -1,3 +1,15 @@
+// Register service worker for PWA functionality
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+            console.log('Service Worker registrado con éxito (sw.js):', registration);
+        })
+        .catch((error) => {
+            console.error('Error al registrar el Service Worker:', error);
+        });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('message-input');
     const sendButton = document.getElementById('send-button');

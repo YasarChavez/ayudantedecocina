@@ -1,0 +1,25 @@
+{
+  "name": "Recipe App",
+  "short_name": "Recipes",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "images/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#6c5ce7"
+}

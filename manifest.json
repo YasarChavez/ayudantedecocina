@@ -1,6 +1,6 @@
 {
-  "name": "Recipe App",
-  "short_name": "Recipes",
+  "name": "Ayudante de Cocina",
+  "short_name": "Ayudante",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [
